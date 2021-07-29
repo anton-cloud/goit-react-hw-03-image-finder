@@ -97,7 +97,10 @@ class App extends Component {
           />
         )}
         {images.length > 0 && (
-          <Button fetchImages={this.fetchImagesWithScroll} />
+          <Button
+            fetchImages={this.fetchImagesWithScroll}
+            amountImg={images.length}
+          />
         )}
         {isModalOpen && (
           <Modal largeImageId={largeImageId} onClose={this.closeModal}>

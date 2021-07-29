@@ -1,11 +1,13 @@
 import React from "react";
 import "./Button.modal.css";
 
-const Button = ({ fetchImages }) => (
+const Button = ({ fetchImages, amountImg }) => (
   <div className=" btnWrap">
-    <button type="button" className="Button" onClick={fetchImages}>
-      Load more...
-    </button>
+    {amountImg === 12 ? (
+      <button type="button" className="Button" onClick={fetchImages}>
+        Load more...
+      </button>
+    ) : null}
   </div>
 );
 
