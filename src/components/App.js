@@ -8,6 +8,7 @@ import Loader from "./loader/Loader";
 
 class App extends Component {
   state = {
+    test: [],
     images: [],
     pageNumber: 1,
     search: "",
@@ -39,6 +40,7 @@ class App extends Component {
       .fetchImages(search, pageNumber)
       .then((images) => {
         this.setState((state) => ({
+          test: [...images],
           images: [...state.images, ...images],
           pageNumber: state.pageNumber + 1,
         }));
@@ -75,7 +77,7 @@ class App extends Component {
   closeModal = () => this.setState({ isModalOpen: false });
 
   render() {
-    const { isLoading, images, isModalOpen, largeImage } = this.state;
+    const { isLoading, images, isModalOpen, largeImage, test } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.onSearch} />
@@ -92,7 +94,7 @@ class App extends Component {
         {images.length > 0 && (
           <Button
             fetchImages={this.fetchImagesWithScroll}
-            amountImg={images.length}
+            amountImg={test.length}
           />
         )}
         {isModalOpen && (
