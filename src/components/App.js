@@ -14,9 +14,9 @@ class App extends Component {
     error: "",
     isLoading: false,
     isModalOpen: false,
-    largeImageId: null,
-    largeImage: [],
+    largeImage: null,
   };
+
   componentDidMount() {}
   componentDidUpdate(prevProps, prevState) {
     if (prevState.search !== this.state.search) {
@@ -66,23 +66,16 @@ class App extends Component {
       });
   };
 
-  findImg = () => {
-    const largeImg = this.state.images.find((image) => {
-      return image.id === this.state.largeImageId;
-    });
-    return largeImg;
-  };
-
-  openModal = (e) => {
+  openModal = (url) => {
     this.setState({
       isModalOpen: true,
-      largeImageId: Number(e.currentTarget.id),
+      largeImage: url,
     });
   };
   closeModal = () => this.setState({ isModalOpen: false });
 
   render() {
-    const { isLoading, images, isModalOpen, largeImageId } = this.state;
+    const { isLoading, images, isModalOpen, largeImage } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.onSearch} />
@@ -103,8 +96,8 @@ class App extends Component {
           />
         )}
         {isModalOpen && (
-          <Modal largeImageId={largeImageId} onClose={this.closeModal}>
-            <img src={this.findImg().largeImageURL} alt={this.findImg().tags} />
+          <Modal onClose={this.closeModal}>
+            <img src={largeImage} alt="" />
           </Modal>
         )}
       </>

@@ -6,7 +6,11 @@ const ImageGallery = ({ images, openModal }) => {
   return (
     <ul className="ImageGallery">
       {images.map((image) => (
-        <ImageGalleryItem openModal={openModal} key={image.id} image={image} />
+        <ImageGalleryItem
+          openModal={() => openModal(image.largeImageURL)}
+          key={image.id}
+          image={image}
+        />
       ))}
     </ul>
   );
